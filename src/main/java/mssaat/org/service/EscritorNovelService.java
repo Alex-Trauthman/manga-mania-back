@@ -9,10 +9,10 @@ import mssaat.org.DTO.EscritorNovelResponseDTO;
 @ApplicationScoped
 public interface EscritorNovelService {
     public EscritorNovelResponseDTO create(@Valid EscritorNovelDTO escritorNovel);
-    public void update(long id,@Valid EscritorNovelDTO escritorNovel);
-    public void delete(long id);
+    public List<EscritorNovelResponseDTO> findAll(int page, int pageSize);
     public EscritorNovelResponseDTO findById(long id);
     public List<EscritorNovelResponseDTO> findByName(String name);
     public EscritorNovelResponseDTO findByNovel(long novelId);
-    public List<EscritorNovelResponseDTO> findAll();
+    public void update(long id,@Valid EscritorNovelDTO escritorNovel);
+    public void delete(long id);
 }

@@ -10,10 +10,10 @@ import mssaat.org.DTO.AutorMangaResponseDTO;
 @ApplicationScoped
 public interface AutorMangaService {
     public AutorMangaResponseDTO create(@Valid AutorMangaDTO autorManga);
-    public void update(long id, @Valid AutorMangaDTO autorManga);
-    public void delete(long id);
+    public List<AutorMangaResponseDTO> findAll(int page, int pageSize);
     public AutorMangaResponseDTO findById(long id);
     public List<AutorMangaResponseDTO> findByName(String name);
     public AutorMangaResponseDTO findByManga(long mangaId);
-    public List<AutorMangaResponseDTO> findAll();
+    public void update(long id, @Valid AutorMangaDTO autorManga);
+    public void delete(long id);
 } 

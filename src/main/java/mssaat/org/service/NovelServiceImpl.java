@@ -85,8 +85,8 @@ public class NovelServiceImpl implements NovelService {
     }
 
     @Override
-    public List<NovelResponseDTO> findAll() {
-        return novelRepository.findAll().stream().map(NovelResponseDTO::valueOf).toList();
+    public List<NovelResponseDTO> findAll(int page, int pageSize) {
+        return novelRepository.findAll().page(page, pageSize).stream().map(NovelResponseDTO::valueOf).toList();
     }
 
 

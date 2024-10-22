@@ -67,8 +67,8 @@ public class AutorMangaServiceImpl implements AutorMangaService {
 
 	@Override
 	@Transactional
-	public List<AutorMangaResponseDTO> findAll() {
-		return autorMangaRepository.findAll().stream().map(AutorMangaResponseDTO::valueOf).toList();
+	public List<AutorMangaResponseDTO> findAll(int page, int pageSize) {
+		return autorMangaRepository.findAll().page(page, pageSize).stream().map(AutorMangaResponseDTO::valueOf).toList();
 	}
 
 	@Override

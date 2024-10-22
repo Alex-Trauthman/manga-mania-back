@@ -2,11 +2,13 @@ package mssaat.org.resources;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import mssaat.org.DTO.EscritorNovelDTO;
@@ -18,8 +20,8 @@ public class EscritorNovelResource {
     @Inject EscritorNovelServiceImpl escritorNovelService;
 
     @GET
-     public Response findAll() {
-        return Response.ok(escritorNovelService.findAll()).build();
+     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(escritorNovelService.findAll(page, pageSize)).build();
     }
 
     @GET

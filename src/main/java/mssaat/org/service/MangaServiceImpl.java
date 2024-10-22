@@ -86,8 +86,8 @@ public class MangaServiceImpl implements MangaService {
     }
 
     @Override
-    public List<MangaResponseDTO> findAll() {
-        return mangaRepository.findAll().stream().map(MangaResponseDTO::valueOf).toList();
+    public List<MangaResponseDTO> findAll(int page, int pageSize) {
+        return mangaRepository.findAll().page(page, pageSize).stream().map(MangaResponseDTO::valueOf).toList();
     }
     
     
