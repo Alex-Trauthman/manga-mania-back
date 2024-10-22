@@ -10,10 +10,8 @@ import jakarta.persistence.ManyToOne;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Manga extends Produto {
-
     @Column(nullable = false)
     private boolean colorido;
-
     @ManyToOne
     @JoinColumn(name = "autorManga_id")
     private AutorManga autor;

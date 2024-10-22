@@ -1,31 +1,20 @@
 package mssaat.org.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class Produto extends DefaultEntity {
-
-    @Column(length = 60, nullable = false)
     private String nome;
-
     private String nomeImagem;
-
     @Column(nullable = false)
     private int paginas;
-
     @Column(length = 10, nullable = false)
     private Double preco;
-    
     @Column(columnDefinition = "TEXT", nullable = false)
     private String sinopse;
-    
-    
     @Column(nullable = false)
     private int anoPublicacao;
-
     @Column(nullable = false)
     private int estoque;
     

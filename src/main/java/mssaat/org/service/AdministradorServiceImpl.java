@@ -27,7 +27,7 @@ public class AdministradorServiceImpl implements AdministradorService {
     @RolesAllowed("Administrador")
     public AdministradorResponseDTO create(@Valid AdministradorDTO adminDto) {
         Administrador userBanco = new Administrador();
-        userBanco.setNome(adminDto.nome());
+        userBanco.setUsername(adminDto.username());
         userBanco.setEmail(adminDto.email());
         userBanco.setSenha(hashService.getHashSenha(adminDto.senha()));
         userBanco.setCpf(adminDto.cpf());
@@ -43,7 +43,7 @@ public class AdministradorServiceImpl implements AdministradorService {
         if (userBanco == null) {
             throw new ValidationException("id", "Administrador não existe.");
         }
-        userBanco.setNome(adminDto.nome());
+        userBanco.setUsername(adminDto.username());
         userBanco.setEmail(adminDto.email());
         userBanco.setSenha(hashService.getHashSenha(adminDto.senha()));
         userBanco.setCpf(adminDto.cpf());
@@ -76,10 +76,10 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
-    @Path("/search/nome/{nome}")
+    @Path("/search/username/{nome}")
     @RolesAllowed("Administrador")
-    public List<AdministradorResponseDTO> findByNome(@PathParam("nome") String nome) {
-        return administradorRepository.findByNome(nome).stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
+    public List<AdministradorResponseDTO> findByUsername(@PathParam("nome") String username) {
+        return administradorRepository.findByUsername(username).stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
     }
 
     @Override
@@ -98,7 +98,7 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     public AdministradorResponseDTO login(String username, String senha) {
-        Administrador administrador = administradorRepository.findByNomeAndSenha(username, senha);
+        Administrador administrador = administradorRepository.findByUsernameAndSenha(username, senha);
         return AdministradorResponseDTO.valueOf(administrador);
     }
 }

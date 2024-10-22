@@ -7,8 +7,6 @@ public enum Sexo {
     FEMININO(1, "Feminino"),
     MASCULUNO(2, "Masculino");
     
-
-
     private int id;
     private String nome;
 

@@ -29,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public UsuarioResponseDTO create(@Valid UsuarioDTO userDto) {
         Usuario userBanco = new Usuario();
-        userBanco.setNome(userDto.nome());
+        userBanco.setUsername(userDto.username());
         userBanco.setEmail(userDto.email());
         userBanco.setSenha(hashService.getHashSenha(userDto.senha()));
         userBanco.setCpf(userDto.cpf());
@@ -53,7 +53,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (userBanco == null) {
             throw new ValidationException("id", "Usuário não existe.");
         }
-        userBanco.setNome(userDto.nome());
+        userBanco.setUsername(userDto.username());
         userBanco.setEmail(userDto.email());
         userBanco.setSenha(hashService.getHashSenha(userDto.senha()));
         userBanco.setCpf(userDto.cpf());
@@ -88,9 +88,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    @Path("/search/nome/{nome}")
-    public List<UsuarioResponseDTO> findByNome(@PathParam("nome") String nome) {
-        return usuarioRepository.findByNome(nome).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+    @Path("/search/username/{content}")
+    public List<UsuarioResponseDTO> findByUsername(@PathParam("content") String content) {
+        return usuarioRepository.findByUsername(content).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
     }
 
     @Override
@@ -113,7 +113,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     public UsuarioResponseDTO login(String username, String senha) {
-        Usuario usuario = usuarioRepository.findByNomeAndSenha(username, senha);
+        Usuario usuario = usuarioRepository.findByUsernameAndSenha(username, senha);
         return UsuarioResponseDTO.valueOf(usuario);
     }
 }

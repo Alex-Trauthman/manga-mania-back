@@ -7,12 +7,12 @@ import mssaat.org.model.Administrador;
 
 @ApplicationScoped
 public class AdministradorRepository implements PanacheRepository<Administrador> {
-    public Administrador findNomeEqual(String nome) {
-        return find("nome = ?1", nome).firstResult();
+    public Administrador findUsernameEqual(String username) {
+        return find("username = ?1", username).firstResult();
     }
 
-    public PanacheQuery<Administrador> findByNome(String nome) {
-        return find("nome LIKE ?1", "%" + nome + "%");
+    public PanacheQuery<Administrador> findByUsername(String username) {
+        return find("username LIKE ?1", "%" + username + "%");
     }
 
     public PanacheQuery<Administrador> findByEmail(String email) {
@@ -23,7 +23,7 @@ public class AdministradorRepository implements PanacheRepository<Administrador>
         return find("cpf LIKE ?1", "%" + cpf + "%");
     }
 
-    public Administrador findByNomeAndSenha(String nome, String senha) {
-        return find("nome = ?1 AND senha = ?2", nome, senha).firstResult();
+    public Administrador findByUsernameAndSenha(String username, String senha) {
+        return find("username = ?1 AND senha = ?2", username, senha).firstResult();
     }
 }

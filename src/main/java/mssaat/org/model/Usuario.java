@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Email;
 @Entity
 public class Usuario extends DefaultEntity {
     @Column(length = 80)
-    private String nome;
+    private String username;
     @Column(length = 60)
     @Email
     private String email;
@@ -29,25 +29,14 @@ public class Usuario extends DefaultEntity {
     private Sexo sexo;
 
     public Usuario() {
-    };
-
-    public Usuario(String nome, @Email String email, String senha, String cpf, String endereco,
-            List<Telefone> listaTelefone, Sexo sexo) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.listaTelefone = listaTelefone;
-        this.sexo = sexo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -74,6 +63,14 @@ public class Usuario extends DefaultEntity {
         this.cpf = cpf;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
     public List<Telefone> getListaTelefone() {
         return listaTelefone;
     }
@@ -88,13 +85,5 @@ public class Usuario extends DefaultEntity {
 
     public void setSexo(Sexo sexo) {
         this.sexo = sexo;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    };
 }

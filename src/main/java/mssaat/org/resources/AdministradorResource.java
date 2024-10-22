@@ -1,7 +1,5 @@
 package mssaat.org.resources;
 
-import org.jboss.logging.Logger;
-
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -24,7 +22,6 @@ import mssaat.org.DTO.UsuarioDTO;
 import mssaat.org.DTO.UsuarioResponseDTO;
 import mssaat.org.service.AdministradorService;
 import mssaat.org.service.UsuarioService;
-import mssaat.org.validation.BeanValidationExceptionMapper;
 
 @Path("/administradores")
 @Produces(MediaType.APPLICATION_JSON)
@@ -36,12 +33,9 @@ public class AdministradorResource {
     @Inject
     public UsuarioService usuarioService;
 
-    private static final Logger LOG = Logger.getLogger(BeanValidationExceptionMapper.class);
-
     @GET
     @RolesAllowed("Administrador")
     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
-        LOG.info("Listando todos os administradores.");
         return Response.ok(administradorService.findAll(page, pageSize)).build();
     }
 
@@ -49,7 +43,6 @@ public class AdministradorResource {
     @Path("/{id}")
     @RolesAllowed("Administrador")
     public Response findById(@PathParam("id") Long id) {
-        LOG.info("Obtendo administrador por id.");
         AdministradorResponseDTO user = administradorService.findById(id);
         if (user == null) {
             return Response.status(Status.NOT_FOUND).build();
@@ -58,18 +51,16 @@ public class AdministradorResource {
     }
 
     @GET
-    @Path("/search/nome/{nome}")
+    @Path("/search/username/{nome}")
     @RolesAllowed("Administrador")
-    public Response findByNome(@PathParam("nome") String nome) {
-        LOG.info("Listando administradores por nome.");
-        return Response.ok(administradorService.findByNome(nome)).build();
+    public Response findByUsername(@PathParam("nome") String username) {
+        return Response.ok(administradorService.findByUsername(username)).build();
     }
 
     @GET
     @Path("/search/email/{email}")
     @RolesAllowed("Administrador")
     public Response findByEmail(@PathParam("email") String email) {
-        LOG.info("Listando administradores por email.");
         return Response.ok(administradorService.findByEmail(email)).build();
     }
 
@@ -77,7 +68,6 @@ public class AdministradorResource {
     @Path("/search/cpf/{cpf}")
     @RolesAllowed("Administrador")
     public Response findByCpf(@PathParam("cpf") String cpf) {
-        LOG.info("Listando administradores por cpf.");
         return Response.ok(administradorService.findByCpf(cpf)).build();
     }
 
@@ -86,8 +76,6 @@ public class AdministradorResource {
     @RolesAllowed("Administrador")
     @Transactional
     public Response create(AdministradorDTO adminDto) {
-        LOG.info("Criando administrador.");
-        LOG.debugf("%s", adminDto);
         return Response.status(Status.CREATED).entity(administradorService.create(adminDto)).build();
     }
 
@@ -96,8 +84,6 @@ public class AdministradorResource {
     @RolesAllowed("Administrador")
     @Transactional
     public Response update(@PathParam("id") Long id, AdministradorDTO adminDto) {
-        LOG.info("Atualizando administrador.");
-        LOG.debugf("%s", adminDto);
         AdministradorResponseDTO adminBanco = administradorService.findById(id);
         if (adminBanco == null)
             return Response.status(Status.NOT_FOUND).build();
@@ -110,8 +96,6 @@ public class AdministradorResource {
     @Path("/usuarios/edit/{id}")
     @Transactional
     public Response update(@PathParam("id") Long id, UsuarioDTO userDto) {
-        LOG.info("Atualizando usuário.");
-        LOG.debugf("DTO: %s", userDto);
         UsuarioResponseDTO usuarioBanco = usuarioService.findById(id);
         if (usuarioBanco == null) {
             return Response.status(Status.NOT_FOUND).build();
@@ -125,7 +109,6 @@ public class AdministradorResource {
     @RolesAllowed("Administrador")
     @Transactional
     public Response deleteById(@PathParam("id") Long id) {
-        LOG.info("Apagando administrador");
         administradorService.deleteById(id);
         return Response.status(Status.NO_CONTENT).build();
     }

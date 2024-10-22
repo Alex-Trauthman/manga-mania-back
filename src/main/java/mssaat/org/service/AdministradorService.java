@@ -11,7 +11,7 @@ public interface AdministradorService {
     public AdministradorResponseDTO login(String username, String senha);
     public AdministradorResponseDTO findById(Long id);
     public List<AdministradorResponseDTO> findAll(int page, int pageSize);
-    public List<AdministradorResponseDTO> findByNome(String nome);
+    public List<AdministradorResponseDTO> findByUsername(String username);
     public List<AdministradorResponseDTO> findByEmail(String email);
     public List<AdministradorResponseDTO> findByCpf(String cpf);
     public void update(Long id, AdministradorDTO dto);

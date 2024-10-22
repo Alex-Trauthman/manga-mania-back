@@ -41,5 +41,4 @@ public class Novel extends Produto {
     public void setGenero(GeneroNovel genero) {
         this.genero = genero;
     }
-
 }

@@ -16,29 +16,31 @@ import mssaat.org.service.AutorMangaServiceImpl;
 
 @Path("/autorManga")
 public class AutorMangaResource {
-    
-    @Inject AutorMangaServiceImpl autorMangaService;
+
+    @Inject
+    AutorMangaServiceImpl autorMangaService;
 
     @GET
-     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+    public Response findAll(@QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(autorMangaService.findAll(page, pageSize)).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id")long id) {
+    public Response findById(@PathParam("id") long id) {
         return Response.ok(autorMangaService.findById(id)).build();
     }
 
     @GET
     @Path("/name/{name}")
-    public Response findByName(@PathParam("name")String name) {
+    public Response findByName(@PathParam("name") String name) {
         return Response.ok(autorMangaService.findByName(name)).build();
     }
 
     @GET
     @Path("/manga/{mangaId}")
-    public Response findByManga(@PathParam("mangaId")long mangaId) {
+    public Response findByManga(@PathParam("mangaId") long mangaId) {
         return Response.ok(autorMangaService.findByManga(mangaId)).build();
     }
 

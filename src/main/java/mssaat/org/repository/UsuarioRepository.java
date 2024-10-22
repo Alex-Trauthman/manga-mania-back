@@ -7,12 +7,12 @@ import mssaat.org.model.Usuario;
 
 @ApplicationScoped
 public class UsuarioRepository implements PanacheRepository<Usuario> {
-    public Usuario findNomeEqual(String nome) {
-        return find("nome = ?1", nome).firstResult();
+    public Usuario findNomeEqual(String username) {
+        return find("username = ?1", username).firstResult();
     }
 
-    public PanacheQuery<Usuario> findByNome(String nome) {
-        return find("nome LIKE ?1", "%" + nome + "%");
+    public PanacheQuery<Usuario> findByUsername(String username) {
+        return find("username LIKE ?1", "%" + username + "%");
     }
 
     public PanacheQuery<Usuario> findByEmail(String email) {
@@ -27,7 +27,7 @@ public class UsuarioRepository implements PanacheRepository<Usuario> {
         return find("endereco LIKE ?1", "%" + endereco + "%");
     }
 
-    public Usuario findByNomeAndSenha(String nome, String senha) {
-        return find("nome = ?1 AND senha = ?2", nome, senha).firstResult();
+    public Usuario findByUsernameAndSenha(String username, String senha) {
+        return find("username = ?1 AND senha = ?2", username, senha).firstResult();
     }
 }

@@ -1,4 +1,4 @@
-package br.unitins.topicos1.dto;
+package mssaat.org.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

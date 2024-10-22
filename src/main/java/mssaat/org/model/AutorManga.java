@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -13,7 +12,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 @Inheritance(strategy= InheritanceType.JOINED)
 public class AutorManga extends Produtor{
-    
     @JsonIgnore
     @OneToMany(mappedBy = "autor")
     private List<Manga> mangas;
@@ -25,5 +23,4 @@ public class AutorManga extends Produtor{
     public void setMangas(List<Manga> mangas) {
         this.mangas = mangas;
     }
-
 }

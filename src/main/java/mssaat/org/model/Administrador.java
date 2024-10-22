@@ -10,31 +10,24 @@ import jakarta.validation.constraints.Email;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Administrador extends DefaultEntity {
     @Column(length = 80, nullable = false)
-    private String nome;
+    private String username;    
     @Column(length = 60, nullable = false)
     @Email
-    private String email;
+    private String email;   
     @Column(length = 120, nullable = false)
-    private String senha;
+    private String senha;   
     @Column(length = 12, nullable = false)
-    private String cpf;
+    private String cpf; 
 
     public Administrador() {
-    };
-
-    public Administrador(String nome, @Email String email, String senha, String cpf) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.cpf = cpf;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -45,19 +38,19 @@ public class Administrador extends DefaultEntity {
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

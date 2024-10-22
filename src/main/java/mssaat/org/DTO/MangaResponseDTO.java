@@ -1,6 +1,5 @@
 package mssaat.org.DTO;
 
-import mssaat.org.model.AutorManga;
 import mssaat.org.model.GeneroManga;
 import mssaat.org.model.Manga;
 
