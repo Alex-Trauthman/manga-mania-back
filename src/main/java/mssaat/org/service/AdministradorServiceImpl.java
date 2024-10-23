@@ -2,12 +2,10 @@ package mssaat.org.service;
 
 import java.util.List;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import mssaat.org.DTO.AdministradorDTO;
 import mssaat.org.DTO.AdministradorResponseDTO;
@@ -24,7 +22,6 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     @Override
     @Transactional
-    @RolesAllowed("Administrador")
     public AdministradorResponseDTO create(@Valid AdministradorDTO adminDto) {
         Administrador userBanco = new Administrador();
         userBanco.setUsername(adminDto.username());
@@ -37,7 +34,6 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     @Override
     @Transactional
-    @RolesAllowed("Administrador")
     public void update(Long id, AdministradorDTO adminDto) {
         Administrador userBanco = administradorRepository.findById(id);
         if (userBanco == null) {
@@ -51,7 +47,6 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     @Override
     @Transactional
-    @RolesAllowed("Administrador")
     public void deleteById(Long id) {
         Administrador userBanco = administradorRepository.findById(id);
         if (userBanco == null) {
@@ -61,14 +56,12 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
-    @RolesAllowed("Administrador")
     public List<AdministradorResponseDTO> findAll(int page, int pageSize) {
         return administradorRepository.findAll().page(page, pageSize).stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    @RolesAllowed("Administrador")
-    public AdministradorResponseDTO findById(@PathParam("id") Long id) {
+    public AdministradorResponseDTO findById( Long id) {
         Administrador admin = administradorRepository.findById(id);
         if (admin == null)
             return null;
@@ -76,25 +69,21 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
-    @Path("/search/username/{nome}")
-    @RolesAllowed("Administrador")
-    public List<AdministradorResponseDTO> findByUsername(@PathParam("nome") String username) {
-        return administradorRepository.findByUsername(username).stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
+    public List<AdministradorResponseDTO> findByUsername(String username, int page, int pageSize) {
+        List<Administrador> admins = administradorRepository.findByUsername(username).page(page, pageSize).list();
+        return admins.stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    @Path("/search/email/{email}")
-    @RolesAllowed("Administrador")
-    public List<AdministradorResponseDTO> findByEmail(@PathParam("email") String email) {
-        return administradorRepository.findByEmail(email).stream().map(e -> AdministradorResponseDTO.valueOf(e))
-                .toList();
+    public List<AdministradorResponseDTO> findByEmail(String email, int page, int pageSize) {
+        List<Administrador> admins = administradorRepository.findByEmail(email).page(page, pageSize).list();
+        return admins.stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
     }
 
     @Override
-    @Path("/search/cpf/{cpf}")
-    @RolesAllowed("Administrador")
-    public List<AdministradorResponseDTO> findByCpf(@PathParam("cpf") String cpf) {
-        return administradorRepository.findByCpf(cpf).stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
+    public List<AdministradorResponseDTO> findByCpf(@PathParam("cpf") String cpf, int page, int pageSize) {
+        List<Administrador> admins = administradorRepository.findByCpf(cpf).page(page, pageSize).list();
+        return admins.stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
     }
 
     public AdministradorResponseDTO login(String username, String senha) {
