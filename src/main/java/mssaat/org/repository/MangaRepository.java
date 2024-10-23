@@ -13,10 +13,10 @@ public class MangaRepository implements PanacheRepository<Manga> {
     }
 
     public PanacheQuery<Manga> findByAuthor(long authorId) {
-        return find("autor_id = 1", authorId);
+        return find("autor.id = ?1", authorId);
     }
 
     public PanacheQuery<Manga> findByGenre(GeneroManga genre) {
-        return find("genero = 1", genre);
+        return find("genero = ?1", genre);
     }
 }

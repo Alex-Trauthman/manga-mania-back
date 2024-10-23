@@ -1,14 +1,13 @@
 package mssaat.org.service;
 
 import java.util.ArrayList;
-import java.util.List;  
+import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
 import mssaat.org.DTO.TelefoneResponseDTO;
 import mssaat.org.DTO.UsuarioDTO;
 import mssaat.org.DTO.UsuarioResponseDTO;
@@ -75,11 +74,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<UsuarioResponseDTO> findAll(int page, int pageSize) {
-        return usuarioRepository.findAll().page(page, pageSize).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+        List<Usuario> usuarios = usuarioRepository.findAll().page(page, pageSize).list();
+        return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
     }
 
     @Override
-    public UsuarioResponseDTO findById(@PathParam("id") Long id) {
+    public UsuarioResponseDTO findById( Long id) {
         Usuario user = usuarioRepository.findById(id);
         if (user == null) {
             return null;
@@ -88,30 +88,30 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    @Path("/search/username/{content}")
-    public List<UsuarioResponseDTO> findByUsername(@PathParam("content") String content) {
-        return usuarioRepository.findByUsername(content).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+    public List<UsuarioResponseDTO> findByUsername(String content, int page, int pageSize) {
+        List<Usuario> usuarios = usuarioRepository.findByUsername(content).page(page, pageSize).list();
+        return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
     }
 
     @Override
-    @Path("/search/email/{email}")
-    public List<UsuarioResponseDTO> findByEmail(@PathParam("email") String email) {
-        return usuarioRepository.findByEmail(email).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+    public List<UsuarioResponseDTO> findByEmail(String email, int page, int pageSize) {
+        List<Usuario> usuarios = usuarioRepository.findByEmail(email).page(page, pageSize).list();
+        return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
     }
 
     @Override
-    @Path("/search/cpf/{cpf}")
-    public List<UsuarioResponseDTO> findByCpf(@PathParam("cpf") String cpf) {
-        return usuarioRepository.findByCpf(cpf).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+    public List<UsuarioResponseDTO> findByCpf(String cpf, int page, int pageSize) {
+        List<Usuario> usuarios = usuarioRepository.findByCpf(cpf).page(page, pageSize).list();
+        return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
     }
 
     @Override
-    @Path("/search/endereco/{content}")
-    public List<UsuarioResponseDTO> findByEndereco(@PathParam("content") String content) {
-        return usuarioRepository.findByEndereco(content).stream().map(e -> UsuarioResponseDTO.valueOf(e)).toList();
+    public List<UsuarioResponseDTO> findByEndereco(String content, int page, int pageSize) {
+        List<Usuario> usuarios = usuarioRepository.findByEndereco(content).page(page, pageSize).list();
+        return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
     }
 
-
+    @Override
     public UsuarioResponseDTO login(String username, String senha) {
         Usuario usuario = usuarioRepository.findByUsernameAndSenha(username, senha);
         return UsuarioResponseDTO.valueOf(usuario);

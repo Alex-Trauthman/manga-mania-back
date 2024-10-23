@@ -46,29 +46,29 @@ public class UsuarioResource {
     @GET
     @RolesAllowed({ "Usuario" })
     @Path("/search/username/{content}")
-    public Response findByUsername(@PathParam("content") String content) {
-        return Response.ok(usuarioService.findByUsername(content)).build();
+    public Response findByUsername(@PathParam("content") String content, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(usuarioService.findByUsername(content, page, pageSize)).build();
     }
 
     @GET
     @RolesAllowed({ "Usuario" })
     @Path("/search/email/{email}")
-    public Response findByEmail(@PathParam("email") String email) {
-        return Response.ok(usuarioService.findByEmail(email)).build();
+    public Response findByEmail(@PathParam("email") String email, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(usuarioService.findByEmail(email, page, pageSize)).build();
     }
 
     @GET
     @RolesAllowed({ "Usuario" })
     @Path("/search/cpf/{cpf}")
-    public Response findByCpf(@PathParam("cpf") String cpf) {
-        return Response.ok(usuarioService.findByCpf(cpf)).build();
+    public Response findByCpf(@PathParam("cpf") String cpf, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(usuarioService.findByCpf(cpf, page, pageSize)).build();
     }
 
     @GET
     @RolesAllowed({ "Usuario" })
     @Path("/search/endereco/{endereco}")
-    public Response findByEndereco(@PathParam("endereco") String endereco) {
-        return Response.ok(usuarioService.findByEndereco(endereco)).build();
+    public Response findByEndereco(@PathParam("endereco") String endereco, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(usuarioService.findByEndereco(endereco, page,pageSize)).build();
     }
 
     @POST

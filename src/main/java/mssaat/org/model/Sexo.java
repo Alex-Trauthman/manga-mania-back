@@ -32,6 +32,9 @@ public enum Sexo {
     }
 
     public static Sexo valueOf(Integer id) {
+        if (id == null) {
+            return null;
+        }
         for (Sexo sexo : Sexo.values()) {
             if (sexo.id == id) {
                 return sexo;
