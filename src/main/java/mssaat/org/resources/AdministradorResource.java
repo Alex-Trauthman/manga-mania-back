@@ -53,22 +53,22 @@ public class AdministradorResource {
     @GET
     @Path("/search/username/{nome}")
     @RolesAllowed("Administrador")
-    public Response findByUsername(@PathParam("nome") String username) {
-        return Response.ok(administradorService.findByUsername(username)).build();
+    public Response findByUsername(@PathParam("nome") String username, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(administradorService.findByUsername(username,page,pageSize)).build();
     }
 
     @GET
     @Path("/search/email/{email}")
     @RolesAllowed("Administrador")
-    public Response findByEmail(@PathParam("email") String email) {
-        return Response.ok(administradorService.findByEmail(email)).build();
+    public Response findByEmail(@PathParam("email") String email, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(administradorService.findByEmail(email, page, pageSize)).build();
     }
 
     @GET
     @Path("/search/cpf/{cpf}")
     @RolesAllowed("Administrador")
-    public Response findByCpf(@PathParam("cpf") String cpf) {
-        return Response.ok(administradorService.findByCpf(cpf)).build();
+    public Response findByCpf(@PathParam("cpf") String cpf, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+        return Response.ok(administradorService.findByCpf(cpf, page,pageSize)).build();
     }
 
     @POST
