@@ -57,7 +57,8 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     @Override
     public List<AdministradorResponseDTO> findAll(int page, int pageSize) {
-        return administradorRepository.findAll().page(page, pageSize).stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
+        List<Administrador> admins = administradorRepository.findAll().page(page, pageSize).list();
+        return admins.stream().map(e -> AdministradorResponseDTO.valueOf(e)).toList();
     }
 
     @Override
