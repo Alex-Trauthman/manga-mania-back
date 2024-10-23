@@ -10,8 +10,8 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
-public class AutorManga extends Produtor{
+@Inheritance(strategy = InheritanceType.JOINED)
+public class AutorManga extends Produtor {
     @JsonIgnore
     @OneToMany(mappedBy = "autor")
     private List<Manga> mangas;

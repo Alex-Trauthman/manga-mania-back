@@ -12,6 +12,6 @@ public class AutorMangaRepository implements PanacheRepository<AutorManga> {
     }
 
     public AutorManga findByManga(long mangaId) {
-        return find("id = ?1", mangaId).firstResult();
+        return find("manga_id = ?1", mangaId).firstResult();
     }
 }

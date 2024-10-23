@@ -8,7 +8,7 @@ import mssaat.org.model.EscritorNovel;
 @ApplicationScoped
 public class EscritorNovelRepository implements PanacheRepository<EscritorNovel> {
     public PanacheQuery<EscritorNovel> findByName(String name) {
-        return find("UPPER(nome) LIKE ?1", "%"+ name.toUpperCase() + "%");
+        return find("UPPER(nome) LIKE ?1", "%" + name.toUpperCase() + "%");
     }
 
     public EscritorNovel findByNovel(long novelId) {
