@@ -9,7 +9,7 @@ import mssaat.org.model.Manga;
 @ApplicationScoped
 public class MangaRepository implements PanacheRepository<Manga> {
     public PanacheQuery<Manga> findByName(String name) {
-        return find("UPPER(nome) LIKE ?1", "%"+ name.toUpperCase() + "%");
+        return find("UPPER(nome) LIKE ?1", "%" + name.toUpperCase() + "%");
     }
 
     public PanacheQuery<Manga> findByAuthor(long authorId) {
@@ -19,5 +19,4 @@ public class MangaRepository implements PanacheRepository<Manga> {
     public PanacheQuery<Manga> findByGenre(GeneroManga genre) {
         return find("genero = 1", genre);
     }
-    
 }
