@@ -15,7 +15,7 @@ public class EscritorNovel extends Produtor {
     @JsonIgnore
     @OneToMany(mappedBy = "escritorNovel")
     private List<Novel> novels;
-    
+
     public List<Novel> getNovels() {
         return novels;
     }

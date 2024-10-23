@@ -11,16 +11,28 @@ public class AdministradorRepository implements PanacheRepository<Administrador>
         return find("username = ?1", username).firstResult();
     }
 
-    public PanacheQuery<Administrador> findByUsername(String username) {
+    public PanacheQuery<Administrador> searchByUsername(String username) { // implementar
         return find("username LIKE ?1", "%" + username + "%");
     }
 
-    public PanacheQuery<Administrador> findByEmail(String email) {
+    public PanacheQuery<Administrador> searchByEmail(String email) { // implementar
         return find("email LIKE ?1", "%" + email + "%");
     }
 
-    public PanacheQuery<Administrador> findByCpf(String cpf) {
+    public PanacheQuery<Administrador> searchByCpf(String cpf) { // implementar
         return find("cpf LIKE ?1", "%" + cpf + "%");
+    }
+
+    public PanacheQuery<Administrador> findByUsername(String username) {
+        return find("username = ?1", username);
+    }
+
+    public PanacheQuery<Administrador> findByEmail(String email) {
+        return find("email = ?1", email);
+    }
+
+    public PanacheQuery<Administrador> findByCpf(String cpf) {
+        return find("cpf = ?1", cpf);
     }
 
     public Administrador findByUsernameAndSenha(String username, String senha) {

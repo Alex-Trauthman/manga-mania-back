@@ -14,10 +14,10 @@ public class NovelRepository implements PanacheRepository<Novel> {
     }
 
     public List<Novel> findByAuthor(long authorId) {
-        return find("autor_id = 1", authorId).list();
+        return find("autor.id = 1", authorId).list();
     }
 
     public List<Novel> findByGenre(GeneroNovel genre) {
-        return find("genero = 1", genre).list();
+        return find("genero = ?1", genre).list();
     }
 }

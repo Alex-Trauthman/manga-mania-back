@@ -8,11 +8,10 @@ import mssaat.org.model.AutorManga;
 @ApplicationScoped
 public class AutorMangaRepository implements PanacheRepository<AutorManga> {
     public PanacheQuery<AutorManga> findByName(String name) {
-        return find("UPPER(nome) LIKE ?1", "%"+ name.toUpperCase() + "%");
+        return find("UPPER(nome) LIKE ?1", "%" + name.toUpperCase() + "%");
     }
-    
+
     public AutorManga findByManga(long mangaId) {
-        return find("manga_id = 1", mangaId).firstResult();
+        return find("id = ?1", mangaId).firstResult();
     }
-    
 }

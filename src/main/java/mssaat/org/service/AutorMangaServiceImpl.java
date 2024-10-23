@@ -18,22 +18,21 @@ public class AutorMangaServiceImpl implements AutorMangaService {
     @Inject
     private AutorMangaRepository autorMangaRepository;
 
-
-	@Override
-	@Transactional
-	public AutorMangaResponseDTO create(@Valid AutorMangaDTO autorMangaDTO) {
-		AutorManga autor = new AutorManga();
+    @Override
+    @Transactional
+    public AutorMangaResponseDTO create(@Valid AutorMangaDTO autorMangaDTO) {
+        AutorManga autor = new AutorManga();
         autor.setNome(autorMangaDTO.nome());
         autor.setAnoNascimento(autorMangaDTO.anoNascimento());
         autor.setNacionalidade(autorMangaDTO.nacionalidade());
         autor.setSexo(Sexo.valueOf(autorMangaDTO.sexo()));
         autorMangaRepository.persist(autor);
         return AutorMangaResponseDTO.valueOf(autor);
-	}
-    
+    }
+
     @Override
-	@Transactional
-    public void update( long id, @Valid AutorMangaDTO autorMangaDTO) {
+    @Transactional
+    public void update(long id, @Valid AutorMangaDTO autorMangaDTO) {
         AutorManga autor = autorMangaRepository.findById(id);
         if (autor != null) {
             autor.setNome(autorMangaDTO.nome());
@@ -42,39 +41,38 @@ public class AutorMangaServiceImpl implements AutorMangaService {
             autor.setSexo(Sexo.valueOf(autorMangaDTO.sexo()));
             autorMangaRepository.persist(autor);
         }
-        
     }
-	@Override
-	@Transactional
-	public void delete(long id) {
-	    autorMangaRepository.deleteById(id);
-	}
 
-	@Override
-	public AutorMangaResponseDTO findById(long id) {
-		AutorManga autor = autorMangaRepository.findById(id);
+    @Override
+    @Transactional
+    public void delete(long id) {
+        autorMangaRepository.deleteById(id);
+    }
+
+    @Override
+    public AutorMangaResponseDTO findById(long id) {
+        AutorManga autor = autorMangaRepository.findById(id);
         if (autor != null) {
             return AutorMangaResponseDTO.valueOf(autor);
         }
         return null;
-	}
+    }
 
-	@Override
-	public List<AutorMangaResponseDTO> findByName(String name) {
-		return autorMangaRepository.findByName(name).stream().map(AutorMangaResponseDTO::valueOf).toList();
-	}
+    @Override
+    public List<AutorMangaResponseDTO> findByName(String name) {
+        return autorMangaRepository.findByName(name).stream().map(AutorMangaResponseDTO::valueOf).toList();
+    }
 
+    @Override
+    @Transactional
+    public List<AutorMangaResponseDTO> findAll(int page, int pageSize) {
+        return autorMangaRepository.findAll().page(page, pageSize).stream().map(AutorMangaResponseDTO::valueOf)
+                .toList();
+    }
 
-	@Override
-	@Transactional
-	public List<AutorMangaResponseDTO> findAll(int page, int pageSize) {
-		return autorMangaRepository.findAll().page(page, pageSize).stream().map(AutorMangaResponseDTO::valueOf).toList();
-	}
-
-	@Override
-	public AutorMangaResponseDTO findByManga(long mangaId) {
-		AutorManga autor = autorMangaRepository.findByManga(mangaId);
+    @Override
+    public AutorMangaResponseDTO findByManga(long mangaId) {
+        AutorManga autor = autorMangaRepository.findByManga(mangaId);
         return AutorMangaResponseDTO.valueOf(autor);
-	}
-
+    }
 }

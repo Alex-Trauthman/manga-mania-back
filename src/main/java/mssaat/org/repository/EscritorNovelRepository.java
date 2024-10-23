@@ -12,7 +12,6 @@ public class EscritorNovelRepository implements PanacheRepository<EscritorNovel>
     }
 
     public EscritorNovel findByNovel(long novelId) {
-        return find("novel_id = 1", novelId).firstResult();
+        return find("escritorNovel = ?1", novelId).firstResult();
     }
-    
 }
