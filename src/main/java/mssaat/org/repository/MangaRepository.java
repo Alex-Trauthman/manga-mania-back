@@ -17,6 +17,6 @@ public class MangaRepository implements PanacheRepository<Manga> {
     }
 
     public PanacheQuery<Manga> findByGenre(GeneroManga genre) {
-        return find("genero = ?1", genre);
+        return find("generoManga = ?1", genre);
     }
 }

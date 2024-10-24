@@ -37,7 +37,7 @@ public class MangaServiceImpl implements MangaService {
         mangaEntity.setPaginas(manga.paginas());
         AutorManga autor = autorMangaRepository.findById(manga.idAutor());
         autor.getMangas().add(mangaEntity);
-        
+
         mangaRepository.persist(mangaEntity);
         return MangaResponseDTO.valueOf(mangaEntity);
 
@@ -82,13 +82,13 @@ public class MangaServiceImpl implements MangaService {
 
     @Override
     public List<MangaResponseDTO> findByGenre(int genreId) {
-        return mangaRepository.findByGenre(GeneroManga.valueOf(genreId)).stream().map(MangaResponseDTO::valueOf).toList();
+        return mangaRepository.findByGenre(GeneroManga.valueOf(genreId)).stream().map(MangaResponseDTO::valueOf)
+                .toList();
     }
 
     @Override
     public List<MangaResponseDTO> findAll(int page, int pageSize) {
         return mangaRepository.findAll().page(page, pageSize).stream().map(MangaResponseDTO::valueOf).toList();
     }
-    
-    
+
 }

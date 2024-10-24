@@ -7,13 +7,10 @@ import jakarta.persistence.MappedSuperclass;
 public class Produtor extends DefaultEntity {
     @Column(length = 40, nullable = false)
     private String nome;
-
     @Column(length = 10, nullable = false)
     private int anoNascimento;
-
     @Column(length = 30, nullable = false)
     private String nacionalidade;
-
     @Column(nullable = false)
     private Sexo sexo;
 

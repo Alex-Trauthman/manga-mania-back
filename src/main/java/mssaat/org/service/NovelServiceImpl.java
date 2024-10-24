@@ -34,10 +34,8 @@ public class NovelServiceImpl implements NovelService {
         novelEntity.setCapitulos(novel.capitulos());
         novelEntity.setPreco(novel.preco());
         novelEntity.setEstoque(novel.estoque());
-        
         escritorNovelRepository.findById(novel.idAutor()).getNovels().add(novelEntity);
         novelRepository.persist(novelEntity);
-
         return NovelResponseDTO.valueOf(novelEntity);
 
     }
@@ -76,19 +74,17 @@ public class NovelServiceImpl implements NovelService {
 
     @Override
     public List<NovelResponseDTO> findByEscritor(long authorId) {
-        return novelRepository.findByAuthor(authorId).stream().map(NovelResponseDTO::valueOf).toList();
+        return novelRepository.findByEscritor(authorId).stream().map(NovelResponseDTO::valueOf).toList();
     }
 
     @Override
     public List<NovelResponseDTO> findByGenre(int genreId) {
-        return novelRepository.findByGenre(GeneroNovel.valueOf(genreId)).stream().map(NovelResponseDTO::valueOf).toList();
+        return novelRepository.findByGenre(GeneroNovel.valueOf(genreId)).stream().map(NovelResponseDTO::valueOf)
+                .toList();
     }
 
     @Override
     public List<NovelResponseDTO> findAll(int page, int pageSize) {
         return novelRepository.findAll().page(page, pageSize).stream().map(NovelResponseDTO::valueOf).toList();
     }
-
-
-    
 }

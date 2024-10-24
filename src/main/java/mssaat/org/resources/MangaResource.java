@@ -16,11 +16,12 @@ import mssaat.org.service.MangaServiceImpl;
 
 @Path("/manga")
 public class MangaResource {
-    
-    @Inject MangaServiceImpl mangaService;
+    @Inject
+    MangaServiceImpl mangaService;
 
     @GET
-     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+    public Response findAll(@QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(mangaService.findAll(page, pageSize)).build();
     }
 
@@ -32,7 +33,7 @@ public class MangaResource {
 
     @GET
     @Path("/name/{name}")
-    public Response findByName(@PathParam("name")String name) {
+    public Response findByName(@PathParam("name") String name) {
         return Response.ok(mangaService.findByName(name)).build();
     }
 
@@ -44,7 +45,7 @@ public class MangaResource {
 
     @GET
     @Path("/genero/{genreId}")
-    public Response findByGenre(@PathParam("genreId")int genreId) {
+    public Response findByGenre(@PathParam("genreId") int genreId) {
         return Response.ok(mangaService.findByGenre(genreId)).build();
     }
 
@@ -66,5 +67,4 @@ public class MangaResource {
         mangaService.delete(id);
         return Response.status(Status.NO_CONTENT).build();
     }
-
 }

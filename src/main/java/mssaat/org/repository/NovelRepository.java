@@ -10,11 +10,11 @@ import mssaat.org.model.Novel;
 @ApplicationScoped
 public class NovelRepository implements PanacheRepository<Novel> {
     public List<Novel> findByName(String name) {
-        return find("UPPER(nome) LIKE ?1", "%"+ name.toUpperCase() + "%").list();
+        return find("UPPER(nome) LIKE ?1", "%" + name.toUpperCase() + "%").list();
     }
 
-    public List<Novel> findByAuthor(long authorId) {
-        return find("autor.id = 1", authorId).list();
+    public List<Novel> findByEscritor(Long authorId) {
+        return find("escritorNovel.id = ?1", authorId).list();
     }
 
     public List<Novel> findByGenre(GeneroNovel genre) {

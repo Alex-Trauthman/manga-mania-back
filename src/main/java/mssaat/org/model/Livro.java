@@ -4,7 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class Produto extends DefaultEntity {
+public class Livro extends DefaultEntity {
     private String nome;
     private String nomeImagem;
     @Column(nullable = false)

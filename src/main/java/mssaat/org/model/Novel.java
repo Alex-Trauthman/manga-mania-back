@@ -8,13 +8,11 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Novel extends Produto {
+public class Novel extends Livro {
     @Column(length = 60, nullable = false)
     private GeneroNovel genero;
-
     @Column(nullable = false)
     private int capitulos;
-
     @ManyToOne
     private EscritorNovel escritorNovel;
 

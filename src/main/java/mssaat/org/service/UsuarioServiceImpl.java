@@ -79,7 +79,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public UsuarioResponseDTO findById( Long id) {
+    public UsuarioResponseDTO findById(Long id) {
         Usuario user = usuarioRepository.findById(id);
         if (user == null) {
             return null;

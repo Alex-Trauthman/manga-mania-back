@@ -16,11 +16,12 @@ import mssaat.org.service.NovelServiceImpl;
 
 @Path("/novel")
 public class NovelResource {
-    
-    @Inject NovelServiceImpl novelService;
+    @Inject
+    NovelServiceImpl novelService;
 
     @GET
-     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+    public Response findAll(@QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(novelService.findAll(page, pageSize)).build();
     }
 
@@ -38,7 +39,7 @@ public class NovelResource {
 
     @GET
     @Path("/escritor/{escritorId}")
-    public Response findByAutor(@PathParam("escritorId") long escritorId) {
+    public Response findByEscritor(@PathParam("escritorId") Long escritorId) {
         return Response.ok(novelService.findByEscritor(escritorId)).build();
     }
 
