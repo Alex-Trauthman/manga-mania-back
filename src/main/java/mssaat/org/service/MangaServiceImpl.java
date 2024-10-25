@@ -30,7 +30,7 @@ public class MangaServiceImpl implements MangaService {
         mangaEntity.setAnoPublicacao(manga.lancamento());
         mangaEntity.setAutor(autorMangaRepository.findById(manga.idAutor()));
         mangaEntity.setGeneroManga(GeneroManga.valueOf(manga.genero()));
-        mangaEntity.setColorido(manga.colorido());
+        mangaEntity.setColor(manga.color());
         mangaEntity.setEstoque(manga.estoque());
         mangaEntity.setPreco(manga.preco());
         mangaEntity.setSinopse(manga.sinopse());
@@ -51,7 +51,7 @@ public class MangaServiceImpl implements MangaService {
         mangaEntity.setAnoPublicacao(manga.lancamento());
         mangaEntity.setAutor(autorMangaRepository.findById(manga.idAutor()));
         mangaEntity.setGeneroManga(GeneroManga.valueOf(manga.genero()));
-        mangaEntity.setColorido(manga.colorido());
+        mangaEntity.setColor(manga.color());
         mangaEntity.setEstoque(manga.estoque());
         mangaEntity.setPreco(manga.preco());
         mangaEntity.setSinopse(manga.sinopse());

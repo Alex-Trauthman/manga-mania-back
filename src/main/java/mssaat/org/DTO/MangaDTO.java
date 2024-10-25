@@ -18,7 +18,7 @@ public record MangaDTO(
     @Size(min = 4, max = 4, message = "O ano de lançamento deve ter 4 caracteres")
     @NotNull(message = "O ano de lançamento é obrigatório")
     int lancamento,
-    boolean colorido,
+    String color,
     @NotNull(message = "O preço é obrigatório")
     Double preco,
     @NotNull(message = "O estoque é obrigatório")

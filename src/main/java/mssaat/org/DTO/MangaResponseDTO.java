@@ -10,7 +10,7 @@ public record MangaResponseDTO(
     GeneroManga genero,
     AutorMangaResponseDTO idAutor,
     int lancamento,
-    boolean colorido,
+    String color,
     Double preco,
     int estoque,
     int paginas
@@ -24,11 +24,10 @@ public record MangaResponseDTO(
             manga.getGeneroManga(),
             AutorMangaResponseDTO.valueOf(manga.getAutor()),
             manga.getAnoPublicacao(),
-            manga.isColorido(),
+            manga.getColor(),
             manga.getPreco(),
             manga.getEstoque(),
             manga.getPaginas()
         );
-    
-}
+    }
 }
