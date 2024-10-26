@@ -16,29 +16,36 @@ import mssaat.org.service.EscritorNovelServiceImpl;
 
 @Path("/escritorNovel")
 public class EscritorNovelResource {
-    
-    @Inject EscritorNovelServiceImpl escritorNovelService;
+    @Inject
+    EscritorNovelServiceImpl escritorNovelService;
 
     @GET
-     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
+    public Response findAll(@QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(escritorNovelService.findAll(page, pageSize)).build();
     }
 
     @GET
+    @Path("/count")
+    public long count() {
+        return escritorNovelService.count();
+    }
+
+    @GET
     @Path("/{id}")
-    public Response findById(@PathParam("id")long id) {
+    public Response findById(@PathParam("id") long id) {
         return Response.ok(escritorNovelService.findById(id)).build();
     }
 
     @GET
     @Path("/name/{name}")
-    public Response findByName(@PathParam("name")String name) {
+    public Response findByName(@PathParam("name") String name) {
         return Response.ok(escritorNovelService.findByName(name)).build();
     }
 
     @GET
     @Path("/novel/{novelId}")
-    public Response findByNovel(@PathParam("novelId")long novelId) {
+    public Response findByNovel(@PathParam("novelId") long novelId) {
         return Response.ok(escritorNovelService.findByNovel(novelId)).build();
     }
 

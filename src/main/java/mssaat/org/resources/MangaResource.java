@@ -26,6 +26,12 @@ public class MangaResource {
     }
 
     @GET
+    @Path("/count")
+    public long count() {
+        return mangaService.count();
+    }
+
+    @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") long id) {
         return Response.ok(mangaService.findById(id)).build();
