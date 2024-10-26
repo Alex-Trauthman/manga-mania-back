@@ -11,7 +11,4 @@ public class EscritorNovelRepository implements PanacheRepository<EscritorNovel>
         return find("UPPER(nome) LIKE ?1", "%" + name.toUpperCase() + "%");
     }
 
-    public EscritorNovel findByNovel(long novelId) {
-        return find("id = ?1", novelId).firstResult();
-    }
 }

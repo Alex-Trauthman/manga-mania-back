@@ -28,7 +28,7 @@ public class UsuarioResource {
     public UsuarioService usuarioService;
 
     @GET
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(usuarioService.findAll(page, pageSize)).build();
     }
@@ -44,28 +44,28 @@ public class UsuarioResource {
     }
 
     @GET
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     @Path("/search/username/{content}")
     public Response findByUsername(@PathParam("content") String content, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(usuarioService.findByUsername(content, page, pageSize)).build();
     }
 
     @GET
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     @Path("/search/email/{email}")
     public Response findByEmail(@PathParam("email") String email, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(usuarioService.findByEmail(email, page, pageSize)).build();
     }
 
     @GET
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     @Path("/search/cpf/{cpf}")
     public Response findByCpf(@PathParam("cpf") String cpf, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(usuarioService.findByCpf(cpf, page, pageSize)).build();
     }
 
     @GET
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     @Path("/search/endereco/{endereco}")
     public Response findByEndereco(@PathParam("endereco") String endereco, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(usuarioService.findByEndereco(endereco, page,pageSize)).build();
@@ -73,15 +73,13 @@ public class UsuarioResource {
 
     @POST
     @Path("/create")
-    @Transactional
     public Response create(UsuarioDTO userDto) {
         return Response.status(Status.CREATED).entity(usuarioService.create(userDto)).build();
     }
 
     @PUT
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     @Path("/{id}")
-    @Transactional
     public Response update(@PathParam("id") Long id, UsuarioDTO userDto) {
         UsuarioResponseDTO usuarioBanco = usuarioService.findById(id);
         if (usuarioBanco == null)
@@ -91,9 +89,8 @@ public class UsuarioResource {
     }
 
     @DELETE
-    @RolesAllowed({ "Usuario" })
+    // @RolesAllowed({ "Usuario" })
     @Path("/{id}")
-    @Transactional
     public Response deleteById(@PathParam("id") Long id) {
         usuarioService.deleteById(id);
         return Response.status(Status.NO_CONTENT).build();

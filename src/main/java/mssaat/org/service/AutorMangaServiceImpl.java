@@ -11,6 +11,7 @@ import mssaat.org.DTO.AutorMangaResponseDTO;
 import mssaat.org.model.AutorManga;
 import mssaat.org.model.Sexo;
 import mssaat.org.repository.AutorMangaRepository;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class AutorMangaServiceImpl implements AutorMangaService {
@@ -66,13 +67,8 @@ public class AutorMangaServiceImpl implements AutorMangaService {
     @Override
     @Transactional
     public List<AutorMangaResponseDTO> findAll(int page, int pageSize) {
-        return autorMangaRepository.findAll().page(page, pageSize).stream().map(AutorMangaResponseDTO::valueOf)
-                .toList();
+        return autorMangaRepository.findAll().page(page, pageSize).list().stream().map(AutorMangaResponseDTO::valueOf)
+        .collect(Collectors.toList());
     }
 
-    @Override
-    public AutorMangaResponseDTO findByManga(long mangaId) {
-        AutorManga autor = autorMangaRepository.findByManga(mangaId);
-        return AutorMangaResponseDTO.valueOf(autor);
-    }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import mssaat.org.DTO.MangaDTO;
 import mssaat.org.DTO.MangaResponseDTO;
 import mssaat.org.model.AutorManga;
@@ -24,12 +25,12 @@ public class MangaServiceImpl implements MangaService {
 
     @Override
     @Transactional
-    public MangaResponseDTO create(MangaDTO manga) {
+    public MangaResponseDTO create(@Valid MangaDTO manga) {
         Manga mangaEntity = new Manga();
         mangaEntity.setNome(manga.nome());
         mangaEntity.setAnoPublicacao(manga.lancamento());
         mangaEntity.setAutor(autorMangaRepository.findById(manga.idAutor()));
-        mangaEntity.setGeneroManga(GeneroManga.valueOf(manga.genero()));
+        mangaEntity.setGeneroManga(GeneroManga.value(manga.genero()));
         mangaEntity.setColor(manga.color());
         mangaEntity.setEstoque(manga.estoque());
         mangaEntity.setPreco(manga.preco());
@@ -50,7 +51,7 @@ public class MangaServiceImpl implements MangaService {
         mangaEntity.setNome(manga.nome());
         mangaEntity.setAnoPublicacao(manga.lancamento());
         mangaEntity.setAutor(autorMangaRepository.findById(manga.idAutor()));
-        mangaEntity.setGeneroManga(GeneroManga.valueOf(manga.genero()));
+        mangaEntity.setGeneroManga(GeneroManga.value(manga.genero()));
         mangaEntity.setColor(manga.color());
         mangaEntity.setEstoque(manga.estoque());
         mangaEntity.setPreco(manga.preco());
@@ -82,7 +83,7 @@ public class MangaServiceImpl implements MangaService {
 
     @Override
     public List<MangaResponseDTO> findByGenre(int genreId) {
-        return mangaRepository.findByGenre(GeneroManga.valueOf(genreId)).stream().map(MangaResponseDTO::valueOf)
+        return mangaRepository.findByGenre(GeneroManga.value(genreId)).stream().map(MangaResponseDTO::valueOf)
                 .toList();
     }
 

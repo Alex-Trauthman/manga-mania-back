@@ -57,11 +57,6 @@ public class EscritorNovelServiceImpl implements EscritorNovelService {
         return escritorNovelRepository.findByName(name).stream().map(EscritorNovelResponseDTO::valueOf).toList();
     }
 
-    @Override
-    public EscritorNovelResponseDTO findByNovel(long novelId) {
-        EscritorNovel escNovel = escritorNovelRepository.findByNovel(novelId);
-        return EscritorNovelResponseDTO.valueOf(escNovel);
-    }
 
     @Override
     public List<EscritorNovelResponseDTO> findAll(int page, int pageSize) {

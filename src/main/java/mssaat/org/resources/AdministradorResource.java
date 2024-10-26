@@ -34,14 +34,14 @@ public class AdministradorResource {
     public UsuarioService usuarioService;
 
     @GET
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     public Response findAll(@QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(administradorService.findAll(page, pageSize)).build();
     }
 
     @GET
     @Path("/{id}")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     public Response findById(@PathParam("id") Long id) {
         AdministradorResponseDTO user = administradorService.findById(id);
         if (user == null) {
@@ -52,28 +52,28 @@ public class AdministradorResource {
 
     @GET
     @Path("/search/username/{nome}")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     public Response findByUsername(@PathParam("nome") String username, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(administradorService.findByUsername(username,page,pageSize)).build();
     }
 
     @GET
     @Path("/search/email/{email}")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     public Response findByEmail(@PathParam("email") String email, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(administradorService.findByEmail(email, page, pageSize)).build();
     }
 
     @GET
     @Path("/search/cpf/{cpf}")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     public Response findByCpf(@PathParam("cpf") String cpf, @QueryParam("page") @DefaultValue("0") int page, @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(administradorService.findByCpf(cpf, page,pageSize)).build();
     }
 
     @POST
     @Path("/create")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     @Transactional
     public Response create(AdministradorDTO adminDto) {
         return Response.status(Status.CREATED).entity(administradorService.create(adminDto)).build();
@@ -81,7 +81,7 @@ public class AdministradorResource {
 
     @PUT
     @Path("/{id}")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     @Transactional
     public Response update(@PathParam("id") Long id, AdministradorDTO adminDto) {
         AdministradorResponseDTO adminBanco = administradorService.findById(id);
@@ -92,7 +92,7 @@ public class AdministradorResource {
     }
 
     @PUT
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     @Path("/usuarios/edit/{id}")
     @Transactional
     public Response update(@PathParam("id") Long id, UsuarioDTO userDto) {
@@ -106,7 +106,7 @@ public class AdministradorResource {
 
     @DELETE
     @Path("/{id}")
-    @RolesAllowed("Administrador")
+    // @RolesAllowed("Administrador")
     @Transactional
     public Response deleteById(@PathParam("id") Long id) {
         administradorService.deleteById(id);

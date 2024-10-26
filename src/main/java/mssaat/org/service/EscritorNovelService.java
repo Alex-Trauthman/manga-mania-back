@@ -17,8 +17,6 @@ public interface EscritorNovelService {
 
     public List<EscritorNovelResponseDTO> findByName(String name);
 
-    public EscritorNovelResponseDTO findByNovel(long novelId);
-
     public void update(long id, @Valid EscritorNovelDTO escritorNovel);
 
     public void delete(long id);

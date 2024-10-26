@@ -11,7 +11,4 @@ public class AutorMangaRepository implements PanacheRepository<AutorManga> {
         return find("UPPER(nome) LIKE ?1", "%" + name.toUpperCase() + "%");
     }
 
-    public AutorManga findByManga(long mangaId) {
-        return find("id = ?1", mangaId).firstResult();
-    }
 }

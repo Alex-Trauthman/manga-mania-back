@@ -41,13 +41,22 @@ public enum GeneroManga {
     }
 
     @SuppressWarnings("resource")
-    public static GeneroManga valueOf(Integer id) throws IllegalArgumentException {
+    public static GeneroManga value(Integer id) throws IllegalArgumentException {
         for (GeneroManga genero : GeneroManga.values()) {
             if (genero.id == id)
                 return genero;
         }
         throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
                     .entity(new Error("404", "Gênero de mangá não encontrado para o ID fornecido: " + id))
+                    .build());
+    }
+    public static GeneroManga value(String nome) throws IllegalArgumentException {
+        for (GeneroManga genero : GeneroManga.values()) {
+            if (genero.nome.equals(nome))
+                return genero;
+        }
+        throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+                    .entity(new Error("404", "Gênero de mangá não encontrado para o nome fornecido: " + nome))
                     .build());
     }
 }

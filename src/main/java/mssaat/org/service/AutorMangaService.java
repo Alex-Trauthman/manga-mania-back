@@ -17,8 +17,6 @@ public interface AutorMangaService {
 
     public List<AutorMangaResponseDTO> findByName(String name);
 
-    public AutorMangaResponseDTO findByManga(long mangaId);
-
     public void update(long id, @Valid AutorMangaDTO autorManga);
 
     public void delete(long id);

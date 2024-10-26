@@ -38,12 +38,6 @@ public class AutorMangaResource {
         return Response.ok(autorMangaService.findByName(name)).build();
     }
 
-    @GET
-    @Path("/manga/{mangaId}")
-    public Response findByManga(@PathParam("mangaId") long mangaId) {
-        return Response.ok(autorMangaService.findByManga(mangaId)).build();
-    }
-
     @POST
     public Response create(AutorMangaDTO autorManga) {
         return Response.status(Status.CREATED).entity(autorMangaService.create(autorManga)).build();

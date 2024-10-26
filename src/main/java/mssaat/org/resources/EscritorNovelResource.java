@@ -36,11 +36,6 @@ public class EscritorNovelResource {
         return Response.ok(escritorNovelService.findByName(name)).build();
     }
 
-    @GET
-    @Path("/novel/{novelId}")
-    public Response findByNovel(@PathParam("novelId")long novelId) {
-        return Response.ok(escritorNovelService.findByNovel(novelId)).build();
-    }
 
     @POST
     public Response create(EscritorNovelDTO escritorNovel) {

@@ -14,7 +14,7 @@ public class GeneroMangaConverter implements AttributeConverter<GeneroManga, Int
 
     @Override
     public GeneroManga convertToEntityAttribute(Integer id) {
-        return GeneroManga.valueOf(id);
+        return GeneroManga.value(id);
     }
 
 }
