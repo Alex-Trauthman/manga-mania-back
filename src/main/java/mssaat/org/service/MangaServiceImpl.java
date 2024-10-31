@@ -66,6 +66,11 @@ public class MangaServiceImpl implements MangaService {
     }
 
     @Override
+    public long count() {
+        return mangaRepository.count();
+    }
+
+    @Override
     public MangaResponseDTO findById(long id) {
         Manga mangaEntity = mangaRepository.findById(id);
         return MangaResponseDTO.valueOf(mangaEntity);

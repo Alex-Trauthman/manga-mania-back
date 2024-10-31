@@ -34,6 +34,12 @@ public class UsuarioResource {
     }
 
     @GET
+    @Path("/count")
+    public long count() {
+        return usuarioService.count();
+    }
+
+    @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") Long id) {
         UsuarioResponseDTO user = usuarioService.findById(id);

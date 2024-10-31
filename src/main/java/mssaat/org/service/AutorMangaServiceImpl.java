@@ -51,6 +51,11 @@ public class AutorMangaServiceImpl implements AutorMangaService {
     }
 
     @Override
+    public long count() {
+        return autorMangaRepository.count();
+    }
+
+    @Override
     public AutorMangaResponseDTO findById(long id) {
         AutorManga autor = autorMangaRepository.findById(id);
         if (autor != null) {

@@ -73,6 +73,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public long count() {
+        return usuarioRepository.count();
+    }
+
+    @Override
     public List<UsuarioResponseDTO> findAll(int page, int pageSize) {
         List<Usuario> usuarios = usuarioRepository.findAll().page(page, pageSize).list();
         return usuarios.stream().map(UsuarioResponseDTO::valueOf).collect(Collectors.toList());
