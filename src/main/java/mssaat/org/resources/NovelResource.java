@@ -26,6 +26,12 @@ public class NovelResource {
     }
 
     @GET
+    @Path("/count")
+    public long count() {
+        return novelService.count();
+    }
+
+    @GET
     @Path("/{id}")
     public Response findById(@PathParam("id") long id) {
         return Response.ok(novelService.findById(id)).build();

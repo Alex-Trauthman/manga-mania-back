@@ -47,6 +47,11 @@ public class EscritorNovelServiceImpl implements EscritorNovelService {
     }
 
     @Override
+    public long count() {
+        return escritorNovelRepository.count();
+    }
+
+    @Override
     public EscritorNovelResponseDTO findById(long id) {
         EscritorNovel escNovel = escritorNovelRepository.findById(id);
         return EscritorNovelResponseDTO.valueOf(escNovel);
