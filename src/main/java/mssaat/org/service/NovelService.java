@@ -13,8 +13,6 @@ public interface NovelService {
 
     public NovelResponseDTO findById(long id);
 
-    public long count();
-
     public List<NovelResponseDTO> findAll(int page, int pageSize);
 
     public List<NovelResponseDTO> findByName(String name);

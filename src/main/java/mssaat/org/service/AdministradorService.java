@@ -13,8 +13,6 @@ public interface AdministradorService {
 
     public AdministradorResponseDTO findById(Long id);
 
-    public long count();
-
     public List<AdministradorResponseDTO> findAll(int page, int pageSize);
 
     public List<AdministradorResponseDTO> findByUsername(String username, int page, int pageSize);

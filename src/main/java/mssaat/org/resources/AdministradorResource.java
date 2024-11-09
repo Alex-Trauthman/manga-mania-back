@@ -40,12 +40,6 @@ public class AdministradorResource {
     }
 
     @GET
-    @Path("/count")
-    public long count() {
-        return administradorService.count();
-    }
-
-    @GET
     @Path("/{id}")
     // @RolesAllowed("Administrador")
     public Response findById(@PathParam("id") Long id) {

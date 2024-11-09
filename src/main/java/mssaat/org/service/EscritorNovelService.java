@@ -11,8 +11,6 @@ import mssaat.org.DTO.EscritorNovelResponseDTO;
 public interface EscritorNovelService {
     public EscritorNovelResponseDTO create(@Valid EscritorNovelDTO escritorNovel);
 
-    public long count();
-
     public List<EscritorNovelResponseDTO> findAll(int page, int pageSize);
 
     public EscritorNovelResponseDTO findById(long id);

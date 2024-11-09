@@ -13,8 +13,6 @@ public interface MangaService {
 
     public MangaResponseDTO findById(long id);
 
-    public long count();
-
     public List<MangaResponseDTO> findAll(int page, int pageSize);
 
     public List<MangaResponseDTO> findByName(String name);

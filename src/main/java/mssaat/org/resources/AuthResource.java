@@ -32,15 +32,20 @@ public class AuthResource {
     @POST
     public Response login(AuthUsuarioDTO dto) {
         String hash = hashService.getHashSenha(dto.senha());
-        AdministradorResponseDTO admin = administradorService.login(dto.username(), hash);
-        if (admin == null) {
-            return Response.status(Status.NOT_FOUND).build();
-        }else{
+        if (dto.perfil() == 1) {
+            AdministradorResponseDTO admin = administradorService.login(dto.username(), hash);
+            if (admin == null) {
+                return Response.status(Status.NOT_FOUND).build();
+            }
+            return Response.ok(admin).header("Authorization", jwtService.generateJwt(admin)).build();
+        } else if (dto.perfil() == 2) {
             UsuarioResponseDTO usuario = usuarioService.login(dto.username(), hash);
             if (usuario == null) {
                 return Response.status(Status.NOT_FOUND).build();
             }
             return Response.ok(usuario).header("Authorization", jwtService.generateJwt(usuario)).build();
+        } else {
+            return Response.status(Status.BAD_REQUEST).build();
         }
     }
 }

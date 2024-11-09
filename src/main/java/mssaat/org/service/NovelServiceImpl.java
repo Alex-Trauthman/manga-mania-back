@@ -62,11 +62,6 @@ public class NovelServiceImpl implements NovelService {
     }
 
     @Override
-    public long count() {
-        return novelRepository.count();
-    }
-
-    @Override
     public NovelResponseDTO findById(long id) {
         Novel novel = novelRepository.findById(id);
         return NovelResponseDTO.valueOf(novel);

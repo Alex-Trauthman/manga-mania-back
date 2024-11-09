@@ -16,6 +16,7 @@ import mssaat.org.service.AutorMangaServiceImpl;
 
 @Path("/autorManga")
 public class AutorMangaResource {
+
     @Inject
     AutorMangaServiceImpl autorMangaService;
 
@@ -23,12 +24,6 @@ public class AutorMangaResource {
     public Response findAll(@QueryParam("page") @DefaultValue("0") int page,
             @QueryParam("pageSize") @DefaultValue("100") int pageSize) {
         return Response.ok(autorMangaService.findAll(page, pageSize)).build();
-    }
-
-    @GET
-    @Path("/count")
-    public long count() {
-        return autorMangaService.count();
     }
 
     @GET

@@ -11,8 +11,6 @@ import mssaat.org.DTO.AutorMangaResponseDTO;
 public interface AutorMangaService {
     public AutorMangaResponseDTO create(@Valid AutorMangaDTO autorManga);
 
-    public long count();
-
     public List<AutorMangaResponseDTO> findAll(int page, int pageSize);
 
     public AutorMangaResponseDTO findById(long id);

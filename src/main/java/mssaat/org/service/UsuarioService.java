@@ -13,8 +13,6 @@ public interface UsuarioService {
 
     public UsuarioResponseDTO findById(Long id);
 
-    public long count();
-
     public List<UsuarioResponseDTO> findAll(int page, int pageSize);
 
     public List<UsuarioResponseDTO> findByUsername(String username, int page, int pageSize);
