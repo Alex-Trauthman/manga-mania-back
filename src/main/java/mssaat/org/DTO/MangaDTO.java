@@ -25,6 +25,4 @@ public record MangaDTO(
     int estoque,
     @NotNull(message = "A quantidade de páginas é obrigatória")
     int paginas
-){
-
-}
+){}

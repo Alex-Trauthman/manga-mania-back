@@ -10,14 +10,14 @@ import jakarta.validation.constraints.Email;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Administrador extends DefaultEntity {
     @Column(length = 80, nullable = false)
-    private String username;    
+    private String username;
     @Column(length = 60, nullable = false)
     @Email
-    private String email;   
+    private String email;
     @Column(length = 120, nullable = false)
-    private String senha;   
+    private String senha;
     @Column(length = 12, nullable = false)
-    private String cpf; 
+    private String cpf;
 
     public Administrador() {
     }
