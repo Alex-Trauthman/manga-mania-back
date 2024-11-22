@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class AutorManga extends Produtor {
     @JsonIgnore
-    @OneToMany(mappedBy = "autor")
+    @OneToMany(mappedBy = "autorManga")
     private List<Manga> mangas;
 
     public List<Manga> getMangas() {

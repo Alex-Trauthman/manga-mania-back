@@ -36,9 +36,7 @@ public class MangaServiceImpl implements MangaService {
         mangaEntity.setPreco(manga.preco());
         mangaEntity.setSinopse(manga.sinopse());
         mangaEntity.setPaginas(manga.paginas());
-        AutorManga autor = autorMangaRepository.findById(manga.idAutor());
-        autor.getMangas().add(mangaEntity);
-
+        autorMangaRepository.findById(manga.idAutor()).getMangas().add(mangaEntity);
         mangaRepository.persist(mangaEntity);
         return MangaResponseDTO.valueOf(mangaEntity);
 

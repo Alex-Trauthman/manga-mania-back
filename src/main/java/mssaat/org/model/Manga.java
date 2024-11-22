@@ -10,11 +10,10 @@ import jakarta.persistence.ManyToOne;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Manga extends Livro {
-    @Column(nullable = false)
+    @Column
     private String colorido;
     @ManyToOne
-    @JoinColumn(name = "autorManga_id")
-    private AutorManga autor;
+    private AutorManga autorManga;
     @Column(length = 60, nullable = false)
     private GeneroManga generoManga;
 
@@ -35,10 +34,10 @@ public class Manga extends Livro {
     }
 
     public AutorManga getAutor() {
-        return autor;
+        return autorManga;
     }
 
-    public void setAutor(AutorManga autor) {
-        this.autor = autor;
+    public void setAutor(AutorManga autorManga) {
+        this.autorManga = autorManga;
     }
 }

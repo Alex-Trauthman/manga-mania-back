@@ -7,8 +7,7 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/manga-mania
- .
+# docker build -f src/main/docker/Dockerfile.native -t quarkus/manga-mania .
 #
 # Then run the container using:
 #
