@@ -27,7 +27,7 @@ public class Pedido extends DefaultEntity {
     @Column(nullable = true)
     private PagamentoTipo tipoPagamento;
     @Column(nullable = false)
-    private PagamentoEstado estado;
+    private PagamentoEstado estadoPagamento;
 
     public PagamentoTipo getTipoPagamento() {
         return tipoPagamento;
@@ -36,11 +36,11 @@ public class Pedido extends DefaultEntity {
         this.tipoPagamento = tipoPagamento;
     }
 
-    public PagamentoEstado getEstado() {
-        return estado;
+    public PagamentoEstado getEstadoPagamento() {
+        return estadoPagamento;
     }   
-    public void setEstado(PagamentoEstado estado) {
-        this.estado = estado;
+    public void setEstadoPamento(PagamentoEstado estadoPagamento) {
+        this.estadoPagamento = estadoPagamento;
     }
     public Pedido() {
     }
