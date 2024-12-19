@@ -169,10 +169,12 @@ public class PedidoServiceImpl implements PedidoService {
     public List<PedidoResponseDTO> findComprasByUser(@PathParam("id") Long id) {
         return pedidoRepository.findComprasByUser(id).stream().map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
+
     @Override
     public List<PedidoResponseDTO> findMyCompras() {
         return findComprasByUser(usuarioRepository.findNomeEqual(jsonWebToken.getName()).getId());
     }
+    
     @Override
     @Transactional
     public Response PagarPeloPix(@Valid PixDTO pix) {

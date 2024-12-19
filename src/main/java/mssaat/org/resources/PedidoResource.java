@@ -29,7 +29,6 @@ public class PedidoResource {
     public PedidoService pedidoService;
 
     @GET
-    @RolesAllowed("Usuario")
     public Response findAll() {
         return Response.ok(pedidoService.findAll()).build();
     }
