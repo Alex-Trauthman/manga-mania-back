@@ -108,7 +108,7 @@ public class PedidoResource {
     }
 
     @GET
-    @Path("/minhasCompras")
+    @Path("/meus")
     @RolesAllowed({"Usuario"})
     public Response findMyPedidos(){
         return Response.ok(pedidoService.findMyCompras()).build();
