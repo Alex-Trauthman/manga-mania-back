@@ -80,7 +80,7 @@ public class PedidoServiceImpl implements PedidoService {
             itemPedidoRepository.persist(itemPedido);
             itens.add(itemPedido);
         }
-        pedidoBanco.setEstado(PagamentoEstado.PENDENTE);
+        pedidoBanco.setEstadoPamento(PagamentoEstado.PENDENTE);
         pedidoBanco.setPreco(total);
         pedidoBanco.setItens(itens);
         pedidoRepository.persist(pedidoBanco);
@@ -121,7 +121,7 @@ public class PedidoServiceImpl implements PedidoService {
         }
         pedidoBanco.setPreco(total);
         pedidoBanco.setItens(itens);
-        pedidoBanco.setEstado(PagamentoEstado.PENDENTE);
+        pedidoBanco.setEstadoPamento(PagamentoEstado.PENDENTE);
         pedidoBanco.setItens(itens);
     }
 
@@ -174,13 +174,13 @@ public class PedidoServiceImpl implements PedidoService {
     public List<PedidoResponseDTO> findMyCompras() {
         return findComprasByUser(usuarioRepository.findNomeEqual(jsonWebToken.getName()).getId());
     }
-    
+
     @Override
     @Transactional
     public Response PagarPeloPix(@Valid PixDTO pix) {
         Pedido pedidoPagar = pedidoRepository.findById(pix.idPedido());
         processarPedido(pix.idPedido(), pix.valor());
-        pedidoPagar.setEstado(PagamentoEstado.APROVADO);
+        pedidoPagar.setEstadoPamento(PagamentoEstado.APROVADO);
         pedidoPagar.setTipoPagamento(PagamentoTipo.PIX);
         return Response.ok().build();
     }
@@ -192,7 +192,7 @@ public class PedidoServiceImpl implements PedidoService {
         }
         Pedido pedidoPagar = pedidoRepository.findById(cartao.idPedido());
         processarPedido(cartao.idPedido(), cartao.limite());
-        pedidoPagar.setEstado(PagamentoEstado.PARCELAS);
+        pedidoPagar.setEstadoPamento(PagamentoEstado.PARCELAS);
         pedidoPagar.setTipoPagamento(PagamentoTipo.CREDITO);
         return Response.ok().build();
     }
@@ -201,7 +201,7 @@ public class PedidoServiceImpl implements PedidoService {
     public Response PagarPeloDebito(@Valid CartaoDTO cartao) {
         Pedido pedidoPagar = pedidoRepository.findById(cartao.idPedido());
         processarPedido(cartao.idPedido(), cartao.limite());
-        pedidoPagar.setEstado(PagamentoEstado.APROVADO);
+        pedidoPagar.setEstadoPamento(PagamentoEstado.APROVADO);
         pedidoPagar.setTipoPagamento(PagamentoTipo.DEBITO);
         return Response.ok().build();
     }
