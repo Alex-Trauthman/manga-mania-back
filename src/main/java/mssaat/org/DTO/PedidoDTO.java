@@ -8,10 +8,6 @@ import jakarta.validation.constraints.Size;
 import mssaat.org.model.Manga;
 
 public record PedidoDTO(
-        String tipoCartao,
-        String nomeCartao,
-        String numeroCartao,
-        String pixChave,
         @Size(min = 6, message = "Endereço está pequeno demais.") @Size(max = 60, message = "Endereço está grande demais.") EnderecoDTO endereco,
         @NotNull List<ItemPedidoDTO> itens) {
 }

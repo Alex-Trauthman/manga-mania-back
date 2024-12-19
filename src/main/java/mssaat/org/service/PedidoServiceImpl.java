@@ -1,5 +1,6 @@
 package mssaat.org.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,12 +11,17 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.core.Response;
+import mssaat.org.DTO.CartaoDTO;
 import mssaat.org.DTO.ItemPedidoDTO;
 import mssaat.org.DTO.PedidoDTO;
 import mssaat.org.DTO.PedidoResponseDTO;
+import mssaat.org.DTO.PixDTO;
 import mssaat.org.model.Endereco;
 import mssaat.org.model.ItemPedido;
 import mssaat.org.model.Manga;
+import mssaat.org.model.PagamentoEstado;
+import mssaat.org.model.PagamentoTipo;
 import mssaat.org.model.Pedido;
 import mssaat.org.repository.ItemPedidoRepository;
 import mssaat.org.repository.MangaRepository;
@@ -74,6 +80,7 @@ public class PedidoServiceImpl implements PedidoService {
             itemPedidoRepository.persist(itemPedido);
             itens.add(itemPedido);
         }
+        pedidoBanco.setEstado(PagamentoEstado.PENDENTE);
         pedidoBanco.setPreco(total);
         pedidoBanco.setItens(itens);
         pedidoRepository.persist(pedidoBanco);
@@ -112,6 +119,9 @@ public class PedidoServiceImpl implements PedidoService {
             itemPedidoRepository.persist(itemPedido);
             itens.add(itemPedido);
         }
+        pedidoBanco.setPreco(total);
+        pedidoBanco.setItens(itens);
+        pedidoBanco.setEstado(PagamentoEstado.PENDENTE);
         pedidoBanco.setItens(itens);
     }
 
@@ -144,6 +154,17 @@ public class PedidoServiceImpl implements PedidoService {
         return pedidoRepository.findByEndereco(nome).stream().map(e -> PedidoResponseDTO.valueOf(e)).toList();
     }
 
+    public void processarPedido(Long pedidoId, double valor) {
+        Pedido pedido = pedidoRepository.findById(pedidoId);
+        if (pedido == null) {
+            throw new ValidationException("Pedido", "Pedido não encontrado.");
+        }
+        if(valor<pedido.getPreco()){
+            throw new ValidationException("Valor", "Valor insuficiente.");
+        }
+
+    }
+
     @Override
     public List<PedidoResponseDTO> findComprasByUser(@PathParam("id") Long id) {
         return pedidoRepository.findComprasByUser(id).stream().map(e -> PedidoResponseDTO.valueOf(e)).toList();
@@ -152,4 +173,35 @@ public class PedidoServiceImpl implements PedidoService {
     public List<PedidoResponseDTO> findMyCompras() {
         return findComprasByUser(usuarioRepository.findNomeEqual(jsonWebToken.getName()).getId());
     }
+    @Override
+    @Transactional
+    public Response PagarPeloPix(@Valid PixDTO pix) {
+        Pedido pedidoPagar = pedidoRepository.findById(pix.idPedido());
+        processarPedido(pix.idPedido(), pix.valor());
+        pedidoPagar.setEstado(PagamentoEstado.APROVADO);
+        pedidoPagar.setTipoPagamento(PagamentoTipo.PIX);
+        return Response.ok().build();
+    }
+    @Override
+    @Transactional
+    public Response PagarPeloCredito(@Valid CartaoDTO cartao, int parcelas) {
+        if(parcelas < 1 || parcelas > 12){
+            throw new ValidationException("Parcelas", "Parcelas inválidas, deve estar entre 1 e 12");
+        }
+        Pedido pedidoPagar = pedidoRepository.findById(cartao.idPedido());
+        processarPedido(cartao.idPedido(), cartao.limite());
+        pedidoPagar.setEstado(PagamentoEstado.PARCELAS);
+        pedidoPagar.setTipoPagamento(PagamentoTipo.CREDITO);
+        return Response.ok().build();
+    }
+    @Override
+    @Transactional
+    public Response PagarPeloDebito(@Valid CartaoDTO cartao) {
+        Pedido pedidoPagar = pedidoRepository.findById(cartao.idPedido());
+        processarPedido(cartao.idPedido(), cartao.limite());
+        pedidoPagar.setEstado(PagamentoEstado.APROVADO);
+        pedidoPagar.setTipoPagamento(PagamentoTipo.DEBITO);
+        return Response.ok().build();
+    }
+
 }

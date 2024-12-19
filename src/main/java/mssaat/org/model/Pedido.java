@@ -20,33 +20,35 @@ public class Pedido extends DefaultEntity {
     @OneToMany(cascade = CascadeType.DETACH)
     @JoinColumn(name = "id_itens")
     private List<ItemPedido> itens;
-    @Column(length = 20, nullable = true)
-    private String tipoCartao;
-    @Column(length = 20, nullable = true)
-    private String nomeCartao;
-    @Column(length = 20, nullable = true)
-    private String numeroCartao;
-    @Column(length = 120, nullable = true)
-    private String pixChave;
-
+    @Column
     private Double preco;
-
-  
-
+    
     private Endereco endereco;
+    @Column(nullable = true)
+    private PagamentoTipo tipoPagamento;
+    @Column(nullable = false)
+    private PagamentoEstado estado;
 
+    public PagamentoTipo getTipoPagamento() {
+        return tipoPagamento;
+    }
+    public void setTipoPagamento(PagamentoTipo tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
+    public PagamentoEstado getEstado() {
+        return estado;
+    }   
+    public void setEstado(PagamentoEstado estado) {
+        this.estado = estado;
+    }
     public Pedido() {
     }
 
-    public Pedido(Usuario usuario, Endereco endereco, List<ItemPedido> itens, String tipoCartao, String nomeCartao,
-            String numeroCartao, String pixChave) {
+    public Pedido(Usuario usuario, Endereco endereco, List<ItemPedido> itens) {
         this.usuario = usuario;
         this.endereco = endereco;
         this.itens = itens;
-        this.tipoCartao = tipoCartao;
-        this.nomeCartao = nomeCartao;
-        this.numeroCartao = numeroCartao;
-        this.pixChave = pixChave;
     }
 
     public Double getPreco() {
@@ -81,35 +83,4 @@ public class Pedido extends DefaultEntity {
         this.itens = itens;
     }
 
-    public String getTipoCartao() {
-        return tipoCartao;
-    }
-
-    public void setTipoCartao(String tipoCartao) {
-        this.tipoCartao = tipoCartao;
-    }
-
-    public String getNomeCartao() {
-        return nomeCartao;
-    }
-
-    public void setNomeCartao(String nomeCartao) {
-        this.nomeCartao = nomeCartao;
-    }
-
-    public String getNumeroCartao() {
-        return numeroCartao;
-    }
-
-    public void setNumeroCartao(String numeroCartao) {
-        this.numeroCartao = numeroCartao;
-    }
-
-    public String getPixChave() {
-        return pixChave;
-    }
-
-    public void setPixChave(String pixChave) {
-        this.pixChave = pixChave;
-    }
 }

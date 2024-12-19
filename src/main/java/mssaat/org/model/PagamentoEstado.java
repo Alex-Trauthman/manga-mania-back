@@ -8,7 +8,8 @@ public enum PagamentoEstado {
     APROVADO(2, "Aprovado"),
     RECUSADO(3, "Recusado"),
     REEMBOLSADO(4, "Reembolsado"), 
-    CANCELADO(5, "Cancelado");
+    CANCELADO(5, "Cancelado"),
+    PARCELAS(6, "Parcelas");
 
     private int id;
     private String nome;

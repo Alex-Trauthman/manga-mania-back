@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -14,8 +15,10 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import mssaat.org.DTO.CartaoDTO;
 import mssaat.org.DTO.PedidoDTO;
 import mssaat.org.DTO.PedidoResponseDTO;
+import mssaat.org.DTO.PixDTO;
 import mssaat.org.service.PedidoService;
 
 @Produces(MediaType.APPLICATION_JSON)
@@ -79,6 +82,30 @@ public class PedidoResource {
             return Response.status(Status.NOT_FOUND).build();
         pedidoService.update(id, pedidoDto);
         return Response.status(Status.NO_CONTENT).build();
+    }
+
+    @PATCH
+    @Path("/pagar/pix")
+    @RolesAllowed({"Usuario"})
+    @Transactional
+    public Response PagarPeloPix(PixDTO pix) {
+        return pedidoService.PagarPeloPix(pix);
+    }
+
+    @PATCH
+    @Path("/pagar/credito/{parcelas}")
+    @RolesAllowed({"Usuario"})
+    @Transactional
+    public Response PagarPeloCredito(CartaoDTO cartao, @PathParam("parcelas") int parcelas) {
+        return pedidoService.PagarPeloCredito(cartao, parcelas);
+    }
+
+    @PATCH
+    @Path("/pagar/debito")
+    @RolesAllowed({"Usuario"})
+    @Transactional
+    public Response PagarPeloDebito(CartaoDTO cartao) {
+        return pedidoService.PagarPeloDebito(cartao);
     }
 
     @GET
