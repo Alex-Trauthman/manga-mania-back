@@ -31,4 +31,9 @@ public record MangaResponseDTO(
             manga.getPaginas()
         );
     }
+    public record SimpleMangaResponseDTO(Long id, String nome) {
+        public static SimpleMangaResponseDTO valueOf(Manga manga) {
+            return manga == null ? null : new SimpleMangaResponseDTO(manga.getId(), manga.getNome());
+        }
+    }
 }
