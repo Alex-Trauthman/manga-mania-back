@@ -1,14 +1,29 @@
 INSERT INTO Administrador (username, email, senha, cpf) VALUES ('adminadmin', 'administrador@email.com', 'jToWaGeHuPUor3r9CkTLqX0iYcmTwVAWXyxdJL5VrqG1m/6Kx2iImpZq3i65bJQsLPztfaHi3q/rqDj1QTbqHA==', '12345678900'); -- 123456789123456789
 
-INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Autor 1', 1970, 'Japão', '2');
-INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Autor 2', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Osamu Tezuka', 1970, 'Japão', '2');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Eiichiro Oda', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Akira Toriyama', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Naoko Takeuchi', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Masashi Kishimoto', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Hajime Isayama', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Rumiko Takahashi', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Yoshihiro Togashi', 1980, 'Japão', '1');
+INSERT INTO AutorManga (nome, anoNascimento, nacionalidade, sexo) VALUES ('Takehiko Inoue', 1980, 'Japão', '1');
 
-INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Escritor 0', 1965, 'Japão', '1');
-INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Escritor 1', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Kentaro Miura', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Tsugumi Ohba', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Takeshi Obata', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Gosho Aoyama', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Katsuhiro Otomo', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Haruichi Furudate', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Yana Toboso', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Ai Yazawa', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Kohei Horikoshi', 1965, 'Japão', '1');
+INSERT INTO EscritorNovel (nome, anoNascimento, nacionalidade, sexo) VALUES ('Natsuki Takaya', 1965, 'Japão', '1');
 
-INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('Dragon Ball', 'dragonball.jpg', 200, 19.99, 'Dragon Ball é um Mangá.', 1950, 50, 'CO', 1, 1);
-INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('Naruto', 'naruto.jpg', 200, 19.99, 'Naruto é um Mangá.', 1950, 50, 'CO', 1, 1);
-INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('One Piece', 'onepiece.jpg', 200, 19.99, 'One Piece é um Mangá.', 1950, 50, 'CO', 1, 1);
+INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('Dragon Ball', 'dragonball.jpg', 200, 19.99, 'Dragon Ball é um Mangá.', 1950, 50, 'CO', 1, 2);
+INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('Naruto', 'naruto.jpg', 200, 19.99, 'Naruto é um Mangá.', 1950, 50, 'CO', 1, 2);
+INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('One Piece', 'onepiece.jpg', 200, 19.99, 'One Piece é um Mangá.', 1950, 50, 'CO', 1, 2);
 INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('Bleach', 'bleach.jpg', 200, 19.99, 'Bleach é um Mangá.', 1950, 50, 'CO', 1, 1);
 INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('Hunter x Hunter', 'hunter.jpg', 200, 19.99, 'Hunter x Hunter é um Mangá.', 1950, 50, 'CO', 1, 1);
 INSERT INTO Manga (nome, imageUrl, paginas, preco, sinopse, anoPublicacao, estoque, color, generoManga, autorManga_id) VALUES ('My Hero Academia (Boku no Hero Academia)', 'boku.jpg', 200, 19.99, 'My Hero Academia (Boku no Hero Academia) é um Mangá.', 1950, 50, 'CO', 1, 1);
